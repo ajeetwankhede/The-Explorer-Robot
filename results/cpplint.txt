@@ -1,0 +1,8 @@
+ajetwankhede@ajetwankhede-inspiron-5577:~/catkin_ws/src/the_explorer_robot$ cpplint $( find . -name \*.hpp -or -name \*.cpp | grep -vE -e "^./build/" -e "^./vendor/" -e "^./docs/" -e "^./results" )
+Done processing ./src/main.cpp
+Done processing ./src/map.cpp
+Done processing ./src/optimalPlanner.cpp
+Done processing ./src/output.cpp
+Done processing ./include/map.hpp
+Done processing ./include/optimalPlanner.hpp
+Done processing ./include/output.hpp

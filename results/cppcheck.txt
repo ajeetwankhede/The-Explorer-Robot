@@ -1,0 +1,14 @@
+ajetwankhede@ajetwankhede-inspiron-5577:~/catkin_ws/src/the_explorer_robot$ cppcheck --enable=all --std=c++11 -I include/ --suppress=missingIncludeSystem $( find . -name *.cpp | grep -vE -e "^./build/" -e "^./vendor/" )
+Checking src/main.cpp...
+1/4 files checked 24% done
+Checking src/map.cpp...
+2/4 files checked 48% done
+Checking src/optimalPlanner.cpp...
+3/4 files checked 79% done
+Checking src/output.cpp...
+4/4 files checked 100% done
+[src/output.cpp:49]: (style) The function 'drive' is never used.
+[src/optimalPlanner.cpp:56]: (style) The function 'initMap' is never used.
+[src/map.cpp:62]: (style) The function 'sensorCallback' is never used.
+[src/output.cpp:53]: (style) The function 'showOutput' is never used.
+(information) Cppcheck cannot find all the include files (use --check-config for details)
