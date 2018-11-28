@@ -3,10 +3,7 @@
 
 [![Coverage Status](https://coveralls.io/repos/github/ajeetwankhede/The-Explorer-Robot/badge.svg?branch=master)](https://coveralls.io/github/ajeetwankhede/The-Explorer-Robot?branch=master)
 
-<p align="right">
 <a href='https://opensource.org/licenses/MIT'><img src='https://img.shields.io/badge/License-MIT-brightgreen.svg'/></a>
-</p>
----
 
 ## Author Name for Sprint 1
 Driver: Ajeet Wankhede
