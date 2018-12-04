@@ -9,7 +9,10 @@ Driver: Ajeet Wankhede
 Navigator: Likhita Madiraju
 
 ## Project Overview
-This autonomous robotic system can be applied for TurtleBot in any indoor facility for 2D mapping and path planning. Simultaneous Localization and Mapping (SLAM) is developed, for Acme Robotics, for the navigation of their TurtleBot, in an unknown environment. Gazebo is used to create a model of a warehouse to be explored by the TurtleBot. SLAM enables the location and building of a map while the robot is moving through the warehouse safely. Once the floorplan is created, a path planner is implemented for autonomous navigation, which can be used to locate and transport packages within the warehouse. The generated map and the optimal trajectory is visualized with the help of rviz 3D visualization environment. A demo is provided, implementing the exploration of unknown environment and path planning, in a warehouse setting.  
+This autonomous robotic system can be applied for TurtleBot in any indoor facility for 2D mapping and path planning. Simultaneous Localization and Mapping (SLAM) is developed, for Acme Robotics, for the navigation of their TurtleBot, in an unknown environment. Gazebo is used to create a model of a warehouse to be explored by the TurtleBot. SLAM enables the location and building of a map while the robot is moving through the warehouse safely. Once the floorplan is created, a path planner is implemented for autonomous navigation, which can be used to locate and transport packages within the warehouse. The generated map and the optimal trajectory is visualized with the help of rviz visualization environment. A demo is provided, implementing the exploration of unknown environment and path planning, in a warehouse setting.  
+
+## Disclaimer
+This project comes with MIT license. To view the entire license please visit the following [link](https://opensource.org/licenses/MIT)
 
 ## Link for SIP document
 [SIP document](https://docs.google.com/spreadsheets/d/10SLYF6b-H8jBe_Sn3X3n9NG67jSoSL41Iv0T1WjI9ok/edit?usp=sharing)
@@ -52,3 +55,4 @@ cd ..
 cd ..
 catkin_make
 ```
+## Running a demo
