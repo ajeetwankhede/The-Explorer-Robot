@@ -51,6 +51,7 @@ int main(int argc, char **argv) {
 
   // Create a Map object
   Map map;
+
   // Call the createMap function
   map.createMap();
   return 0;
