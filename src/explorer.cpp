@@ -40,7 +40,7 @@
 Explorer::Explorer() {
   // Initializing values to the attributes of Explorer class
   obstacle = false;
-  speedX = 0.5;
+  speedX = 0.1;
   rotateZ = 1.0;
   msg.linear.x = 0.0;
   msg.linear.y = 0.0;
@@ -112,7 +112,7 @@ void Explorer::explore() {
        ("/scan", 300, &Explorer::sensorCallback, this);
 
   ros::Rate loop_rate(10);
-  
+
   while (ros::ok()) {
     // Collision Detection check
     if (obstacle == true) {
