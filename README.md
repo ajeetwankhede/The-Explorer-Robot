@@ -57,4 +57,30 @@ cd ..
 cd ..
 catkin_make
 ```
-## Running a demo
+## Running a Gazebo demo
+We have created a warehouse world in Gazebo with TurtleBot. This world is mapped using gmapping which uses SLAM. A explorer node is created for autonomous SLAM which subscribes to the laser data of turtle bot provided by topic /scan, and publishes the command velocities for turtle bot. The algorithm for explorer is explained in the activity daigram. It can also record the messages for approx 30 sec using rosbag. This process is visualized in Rviz. Enter following commands in terminal to launch the demo:
+
+a. Autonomous SLAM:
+```
+cd ~/catkin_ws/
+source ./devel/setup.bash
+roslaunch the_explorer_robot demo_launch.launch
+```
+The TurtleBot can also be controlled by using teleop for generating the 2D map. If teleop is launched then it overrides the messages published by explorer node. To launch teleop enter the following command in new terminal
+```
+roslaunch turtlebot_teleop keyboard_teleop.launch --screen
+```
+
+Once the mapping generated a rough map, it can be saved by running the service provided by gmapping. Enter the following command in new terminal.
+```
+rosrun map_server map_saver -f <file_path>
+``` 
+
+b. Path planning using ROS navigation stack
+The saved map is used for path planning using ROS navigation stack. Enter the following commands to launch the navigation stack demo:
+```
+cd ~/catkin_ws/
+source ./devel/setup.bash
+roslaunch the_explorer_robot path_launch.launch
+```
+In Rviz the TurtleBot pose can be estimated using 2D pose estimate. Once the pose is approximately as in Gazebo, the path planner can be used by setting a goal with the help of 2D Nav goal button. The TutleBot navigates to the pose that has been set.
