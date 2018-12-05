@@ -95,6 +95,7 @@ class OptimalPlanner {
   std::map<std::pair<int, int>, std::pair<int, int> > parentNode;
   int length, width;
   std::vector<std::vector<int> > world;
+
  private:
   int noOfNodes;
 };
