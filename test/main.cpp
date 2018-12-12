@@ -46,8 +46,8 @@ int main(int argc, char** argv) {
    * You must call one of the versions of ros::init() before using any other
    * part of the ROS system.
    */
-    ros::init(argc, argv, "plannerTest");
+    ros::init(argc, argv, "explorerTest");
 
-    testing::InitGoogleTest(&argc, argv);
+    ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
 }

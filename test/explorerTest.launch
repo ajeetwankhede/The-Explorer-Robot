@@ -1,0 +1,20 @@
+<!--?xml version="1.0"?-->
+<launch>
+  <!-- Tag for launching TurtleBot in gazebo -->  
+  <!--include file="$(find turtlebot_gazebo)/launch/turtlebot_world.launch">
+      <arg name="world_file" value="$(find the_explorer_robot)/world/warehouse.world"/>
+  </include!-->
+  <!-- Tags of explorer node -->
+  <node
+    pkg="the_explorer_robot"
+    name="explorer"
+    type="explorer"
+  />
+  <!-- Tags of explorerTest -->
+  <test 
+    pkg="the_explorer_robot" 
+    test-name="explorerTest" 
+    type="explorerTest" 
+  />
+</launch>
+
