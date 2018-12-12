@@ -34,16 +34,16 @@
  *  This is a Explorer class source file
  */
 
-#include "ros/ros.h"
-#include "sensor_msgs/LaserScan.h"
-#include "geometry_msgs/Twist.h"
-#include <std_srvs/Empty.h>
-#include "std_msgs/Float64.h"
-#include "std_msgs/String.h"
+#include <ros/ros.h>
 #include <ros/service_client.h>
-#include "the_explorer_robot/change_speed.h"
+#include <std_srvs/Empty.h>
 #include <iostream>
 #include <sstream>
+#include "sensor_msgs/LaserScan.h"
+#include "geometry_msgs/Twist.h"
+#include "std_msgs/Float64.h"
+#include "std_msgs/String.h"
+#include "the_explorer_robot/change_speed.h"
 #include <explorer.hpp>
 
 Explorer::Explorer() {
@@ -57,6 +57,7 @@ Explorer::Explorer() {
   msg.angular.x = 0.0;
   msg.angular.y = 0.0;
   msg.angular.z = 0.0;
+  message = 0.0;
 }
 
 Explorer::~Explorer() {
@@ -145,11 +146,10 @@ void Explorer::explore() {
       if (count < 300) {
         msg.linear.x = 0.0;
         if (turn) {
-          msg.angular.z = rotateZ*4;  
+          msg.angular.z = rotateZ * 4;
         } else {
-          msg.angular.z = -rotateZ*4;
+          msg.angular.z = -rotateZ * 4;
         }
-        
       } else if (count >= 300 && count < 700) {
           turn = false;
           msg.angular.z = 0.0;
