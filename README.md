@@ -161,3 +161,19 @@ The test ouput could also be seen by launching the test launch file by entering 
 ```
 rostest the_explorer_robot explorerTest.launch
 ```
+
+## How to generate Doxygen report
+Run the following commands to generate a Doxygen report:
+```
+sudo apt-get install doxygen
+cd <path to repository>
+mkdir Doxygen
+cd Doxygen
+doxygen -g <config_file_name>
+gedit <config_file_name>
+```
+Update PROJECT_NAME and INPUT fields in the configuration file. Then run the following command to generate the documentations.
+```
+doxygen <config_file_name>
+```
+In Doxygen folder, config file and genertaed reports are saved as html and latex format in Doxygen directory.
