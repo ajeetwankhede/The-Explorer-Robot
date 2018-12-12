@@ -1,7 +1,7 @@
 # The Explorer Robot
 [![Build Status](https://travis-ci.org/ajeetwankhede/The-Explorer-Robot.svg?branch=master)](https://travis-ci.org/ajeetwankhede/The-Explorer-Robot)
 
-[![Coverage Status](https://coveralls.io/repos/github/ajeetwankhede/The-Explorer-Robot/badge.svg?branch=master)](https://coveralls.io/github/ajeetwankhede/The-Explorer-Robot?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/ajeetwankhede/The-Explorer-Robot/badge.svg)](https://coveralls.io/github/ajeetwankhede/The-Explorer-Robot)
 
 <a href='https://opensource.org/licenses/MIT'><img src='https://img.shields.io/badge/License-MIT-brightgreen.svg'/></a>
 
