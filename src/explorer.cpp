@@ -34,14 +34,23 @@
  *  This is a Explorer class source file
  */
 
+#include "ros/ros.h"
+#include "sensor_msgs/LaserScan.h"
+#include "geometry_msgs/Twist.h"
+#include <std_srvs/Empty.h>
+#include "std_msgs/Float64.h"
+#include "std_msgs/String.h"
+#include <ros/service_client.h>
+#include "the_explorer_robot/change_speed.h"
 #include <iostream>
+#include <sstream>
 #include <explorer.hpp>
 
 Explorer::Explorer() {
   // Initializing values to the attributes of Explorer class
   obstacle = false;
   speedX = 0.1;
-  rotateZ = 1.0;
+  rotateZ = 0.1;
   msg.linear.x = 0.0;
   msg.linear.y = 0.0;
   msg.linear.z = 0.0;
@@ -72,6 +81,15 @@ void Explorer::sensorCallback(const sensor_msgs::LaserScan::ConstPtr& msg) {
   obstacle = false;
 }
 
+bool Explorer::changeSpeed(the_explorer_robot::change_speed::Request& req,
+                  the_explorer_robot::change_speed::Response& res) {
+  speedX = req.newSpeedX;
+  rotateZ = req.newRotateZ;
+  res.respSpeedX = speedX;
+  res.respRotateZ = rotateZ;
+  return true;
+}
+
 void Explorer::explore() {
   /**
    * The advertise() function is how you tell ROS that you want to
@@ -90,9 +108,10 @@ void Explorer::explore() {
    * than we can send them, the number here specifies how many messages to
    * buffer up before throwing some away.
    */
-  ros::Publisher velocity_pub = n.advertise<geometry_msgs::Twist>
+  velocity_pub = n.advertise<geometry_msgs::Twist>
                                 ("/cmd_vel_mux/input/navi", 1000);
-
+  // Register our service with the master
+  server = n.advertiseService("change_speed", &Explorer::changeSpeed, this);
   /**
    * The subscribe() call is how you tell ROS that you want to receive messages
    * on a given topic.  This invokes a call to the ROS
@@ -112,21 +131,40 @@ void Explorer::explore() {
        ("/scan", 300, &Explorer::sensorCallback, this);
 
   ros::Rate loop_rate(10);
-
+  int count = 0;
+  bool turn = true;
   while (ros::ok()) {
     // Collision Detection check
     if (obstacle == true) {
       // Collision detected
       msg.linear.x = 0.0;
       msg.angular.z = rotateZ;
-      ROS_INFO("Collision Detected: ");
+      ROS_INFO("Collision detected: ");
     } else {
       // No collision
-      msg.angular.z = 0.0;
-      msg.linear.x = speedX;
+      if (count < 300) {
+        msg.linear.x = 0.0;
+        if (turn) {
+          msg.angular.z = rotateZ*4;  
+        } else {
+          msg.angular.z = -rotateZ*4;
+        }
+        
+      } else if (count >= 300 && count < 700) {
+          turn = false;
+          msg.angular.z = 0.0;
+          msg.linear.x = speedX;
+      } else {
+        count = 0;
+      }
+      count++;
       ROS_INFO("No collision: ");
     }
-
+    /*std::stringstream ss;
+    ss << "Linear speed: " << speedX << ", Angular speed: " << rotateZ;
+    std_msgs::String msg;
+    msg.data = ss.str();
+    ROS_INFO_STREAM("" << msg.data.c_str());*/
     /**
      * The publish() function is how you send messages. The parameter
      * is the message object. The type of this object must agree with the type
@@ -139,24 +177,4 @@ void Explorer::explore() {
 
     loop_rate.sleep();
   }
-}
-
-int main(int argc, char **argv) {
- /**
-   * The ros::init() function needs to see argc and argv so that it can perform
-   * any ROS arguments and name remapping that were provided at the command line.
-   * For programmatic remappings you can use a different version of init() which takes
-   * remappings directly, but for most command-line programs, passing argc and argv is
-   * the easiest way to do it.  The third argument to init() is the name of the node.
-   *
-   * You must call one of the versions of ros::init() before using any other
-   * part of the ROS system.
-   */
-  ros::init(argc, argv, "explorer");
-
-  // Create a explorer object
-  Explorer ex;
-  // Call the explore function
-  ex.explore();
-  return 0;
 }

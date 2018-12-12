@@ -34,7 +34,8 @@
  *  This is a main file
  */
 
-#include <map.hpp>
+#include "ros/ros.h"
+#include <explorer.hpp>
 
 int main(int argc, char **argv) {
  /**
@@ -47,12 +48,11 @@ int main(int argc, char **argv) {
    * You must call one of the versions of ros::init() before using any other
    * part of the ROS system.
    */
-  ros::init(argc, argv, "planner");
+  ros::init(argc, argv, "explorer");
 
-  // Create a Map object
-  Map map;
-
-  // Call the createMap function
-  map.createMap();
+  // Create a explorer object
+  Explorer ex;
+  // Call the explore function
+  ex.explore();
   return 0;
 }
