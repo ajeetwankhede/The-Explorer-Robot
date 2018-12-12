@@ -34,14 +34,13 @@
 
 #include <ros/ros.h>
 #include <gtest/gtest.h>
+#include <std_srvs/Empty.h>
+#include <ros/service_client.h>
 #include "std_msgs/Float64.h"
 #include "sensor_msgs/LaserScan.h"
 #include "geometry_msgs/Twist.h"
-#include <std_srvs/Empty.h>
-#include <ros/service_client.h>
 #include "the_explorer_robot/change_speed.h"
 #include "explorer.hpp"
-
 
 /**
  * @brief This is a test to check the existence of ROS service change_speed 
@@ -90,17 +89,17 @@ TEST(testexplorerTest, serviceTest) {
 /**
  * @brief This is a test to check if the sensorCallback works correctly
  */
-//TEST(testexplorerTest, obstacleInitTest) {
+// TEST(testexplorerTest, obstacleInitTest) {
   /**
    * NodeHandle is the main access point to communications with the ROS system.
    * The first NodeHandle constructed will fully initialize this node, and the last
    * NodeHandle destructed will close down the node.
    */
-  //ros::NodeHandle n;
-  //Explorer ex;
-  //ros::Subscriber sub = n.subscribe <sensor_msgs::LaserScan>
-   //    ("/scan", 300, &Explorer::sensorCallback, &ex);
-  //ros::WallDuration(1).sleep();
-  // Check the obstacle status
-  //EXPECT_EQ(ex.obstacle, false);
-//}
+// ros::NodeHandle n;
+// Explorer ex;
+// ros::Subscriber sub = n.subscribe <sensor_msgs::LaserScan>
+  //    ("/scan", 300, &Explorer::sensorCallback, &ex);
+// ros::WallDuration(1).sleep();
+// Check the obstacle status
+// EXPECT_EQ(ex.obstacle, false);
+// }
