@@ -1,0 +1,8 @@
+Done processing ./src/main.cpp
+Done processing ./src/explorer.cpp
+Done processing ./test/main.cpp
+Done processing ./test/explorerTest.cpp
+./include/explorer.hpp:78:  Is this a non-const reference? If so, make const or use a pointer: the_explorer_robot::change_speed::Request& req  [runtime/references] [2]
+./include/explorer.hpp:79:  Is this a non-const reference? If so, make const or use a pointer: the_explorer_robot::change_speed::Response& res  [runtime/references] [2]
+Done processing ./include/explorer.hpp
+Total errors found: 2
