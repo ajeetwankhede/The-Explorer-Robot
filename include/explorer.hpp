@@ -40,6 +40,8 @@
 #include "ros/ros.h"
 #include "sensor_msgs/LaserScan.h"
 #include "geometry_msgs/Twist.h"
+#include "std_msgs/Float64.h"
+#include "the_explorer_robot/change_speed.h"
 
 class Explorer {
  public:
@@ -66,6 +68,16 @@ class Explorer {
    */
   void sensorCallback(const sensor_msgs::LaserScan::ConstPtr& msg);
   /**
+ *   @brief Service for changing the speed
+ *
+ *   @param req: request by client
+ *   @param res: request of the server
+ *
+ *   @return bool
+ */
+  bool changeSpeed(the_explorer_robot::change_speed::Request& req,
+                   the_explorer_robot::change_speed::Response& res);
+  /**
    *   @brief Use this function to start the robot
    *
    *   @param none
@@ -80,7 +92,9 @@ class Explorer {
   ros::NodeHandle n;
   ros::Publisher velocity_pub;
   ros::Subscriber sub;
+  ros::ServiceServer server;
   float speedX, rotateZ;
+  float message;
 };
 
 #endif  // INCLUDE_EXPLORER_HPP_
