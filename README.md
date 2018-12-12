@@ -93,10 +93,25 @@ The TurtleBot can also be controlled by using teleop for generating the 2D map. 
 roslaunch turtlebot_teleop keyboard_teleop.launch --screen
 ```
 
-Once the mapping generated a rough map, it can be saved by running the service provided by gmapping. Enter the following command in new terminal.
+## Using the Service to change the speed
+While using gmapping the linear speed and angular speed of the robot can be changed using the service change_speed. First argument is the linear speed and second is the angular speed. It can be called by entering the following commands in a new terminal.
+```
+rosservice call /change_speed <linear_speed> <angular_speed>
+```
+
+Once the mapping generates a rough map, it can be saved by running the service provided by gmapping. Enter the following command in new terminal.
 ```
 rosrun map_server map_saver -f <file_path>
 ``` 
+Output of the gmapping is as shown below:
+<p align="center">
+<img src="/output/slam.png">
+</p>
+
+This map can be made better either using teleop or editing the saved map. The map generated after moving the TurtleBot to the parts where the area in the map was grey, we the the below map:
+<p align="center">
+<img src="/output/slam_final.png">
+</p>
 
 b. Path planning using ROS navigation stack
 The saved map is used for path planning using ROS navigation stack. Enter the following commands to launch the navigation stack demo:
@@ -106,11 +121,6 @@ source ./devel/setup.bash
 roslaunch the_explorer_robot path_launch.launch
 ```
 In Rviz the TurtleBot pose can be estimated using 2D pose estimate. Once the pose is approximately as in Gazebo, the path planner can be used by setting a goal with the help of 2D Nav goal button. The TutleBot navigates to the pose that has been set.
-
-## Using the Service to change the speed
-```
-rosservice call /change_speed <linear_speed> <angular_speed>
-```
 
 ## Stop the nodes
 To stop, press Ctrl+C and then enter the following command to clean up the nodes from the rosnode list
@@ -138,3 +148,16 @@ To play the recorded messages run the following command in a new terminal.
 ```
 cd ~/catkin_ws/src/the_explorer_robot/results
 rosbag play recordedData.bag
+```
+
+## Running the tests
+To run the tests written for explorer node run the following commands in a new terminal. It will show the output after ROS runs the tests.
+```
+cd ~/catkin_ws
+source ./devel/setup.bash
+catkin_make run_tests_the_explorer_robot
+```
+The test ouput could also be seen by launching the test launch file by entering the following commands:
+```
+rostest the_explorer_robot explorerTest.launch
+```
