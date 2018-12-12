@@ -1,0 +1,133 @@
+\hypertarget{classExplorer}{}\section{Explorer Class Reference}
+\label{classExplorer}\index{Explorer@{Explorer}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classExplorer_acbedef0262785b6983d1fe9b4f2c6242}{Explorer}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor for \mbox{\hyperlink{classExplorer}{Explorer}}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classExplorer_aa1b0a71e92e003e9162a5ba99d843392}{$\sim$\+Explorer}} ()
+\begin{DoxyCompactList}\small\item\em Default destructor for \mbox{\hyperlink{classExplorer}{Explorer}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classExplorer_a99a6215e70f2449189b0a3cb7ec12994}{sensor\+Callback}} (const sensor\+\_\+msgs\+::\+Laser\+Scan\+::\+Const\+Ptr \&msg)
+\begin{DoxyCompactList}\small\item\em This is a callback function for laser data. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classExplorer_aa860260292752413282de7f9d9ddfbc2}{change\+Speed}} (the\+\_\+explorer\+\_\+robot\+::change\+\_\+speed\+::\+Request \&req, the\+\_\+explorer\+\_\+robot\+::change\+\_\+speed\+::\+Response \&res)
+\begin{DoxyCompactList}\small\item\em Service for changing the speed. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classExplorer_a246ceb49142bbd15bdbdc3b900269294}{explore}} ()
+\begin{DoxyCompactList}\small\item\em Use this function to start the robot. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classExplorer_aae77ad5be0e6da499ea662ca7bbd1d42}\label{classExplorer_aae77ad5be0e6da499ea662ca7bbd1d42}} 
+bool {\bfseries obstacle}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classExplorer_acbedef0262785b6983d1fe9b4f2c6242}\label{classExplorer_acbedef0262785b6983d1fe9b4f2c6242}} 
+\index{Explorer@{Explorer}!Explorer@{Explorer}}
+\index{Explorer@{Explorer}!Explorer@{Explorer}}
+\subsubsection{\texorpdfstring{Explorer()}{Explorer()}}
+{\footnotesize\ttfamily Explorer\+::\+Explorer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Default constructor for \mbox{\hyperlink{classExplorer}{Explorer}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nothing} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nothing 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classExplorer_aa1b0a71e92e003e9162a5ba99d843392}\label{classExplorer_aa1b0a71e92e003e9162a5ba99d843392}} 
+\index{Explorer@{Explorer}!````~Explorer@{$\sim$\+Explorer}}
+\index{````~Explorer@{$\sim$\+Explorer}!Explorer@{Explorer}}
+\subsubsection{\texorpdfstring{$\sim$\+Explorer()}{~Explorer()}}
+{\footnotesize\ttfamily Explorer\+::$\sim$\+Explorer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Default destructor for \mbox{\hyperlink{classExplorer}{Explorer}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nothing} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nothing 
+\end{DoxyReturn}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classExplorer_aa860260292752413282de7f9d9ddfbc2}\label{classExplorer_aa860260292752413282de7f9d9ddfbc2}} 
+\index{Explorer@{Explorer}!change\+Speed@{change\+Speed}}
+\index{change\+Speed@{change\+Speed}!Explorer@{Explorer}}
+\subsubsection{\texorpdfstring{change\+Speed()}{changeSpeed()}}
+{\footnotesize\ttfamily bool Explorer\+::change\+Speed (\begin{DoxyParamCaption}\item[{the\+\_\+explorer\+\_\+robot\+::change\+\_\+speed\+::\+Request \&}]{req,  }\item[{the\+\_\+explorer\+\_\+robot\+::change\+\_\+speed\+::\+Response \&}]{res }\end{DoxyParamCaption})}
+
+
+
+Service for changing the speed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em req} & request by client \\
+\hline
+{\em res} & request of the server\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classExplorer_a246ceb49142bbd15bdbdc3b900269294}\label{classExplorer_a246ceb49142bbd15bdbdc3b900269294}} 
+\index{Explorer@{Explorer}!explore@{explore}}
+\index{explore@{explore}!Explorer@{Explorer}}
+\subsubsection{\texorpdfstring{explore()}{explore()}}
+{\footnotesize\ttfamily void Explorer\+::explore (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Use this function to start the robot. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+The advertise() function is how you tell R\+OS that you want to publish on a given topic name. This invokes a call to the R\+OS master node, which keeps a registry of who is publishing and who is subscribing. After this advertise() call is made, the master node will notify anyone who is trying to subscribe to this topic name, and they will in turn negotiate a peer-\/to-\/peer connection with this node. advertise() returns a Publisher object which allows you to publish messages on that topic through a call to publish(). Once all copies of the returned Publisher object are destroyed, the topic will be automatically unadvertised.
+
+The second parameter to advertise() is the size of the message queue used for publishing messages. If messages are published more quickly than we can send them, the number here specifies how many messages to buffer up before throwing some away.
+
+The subscribe() call is how you tell R\+OS that you want to receive messages on a given topic. This invokes a call to the R\+OS master node, which keeps a registry of who is publishing and who is subscribing. Messages are passed to a callback function, here called chatter\+Callback. subscribe() returns a Subscriber object that you must hold on to until you want to unsubscribe. When all copies of the Subscriber object go out of scope, this callback will automatically be unsubscribed from this topic.
+
+The second parameter to the subscribe() function is the size of the message queue. If messages are arriving faster than they are being processed, this is the number of messages that will be buffered up before beginning to throw away the oldest ones.
+
+The publish() function is how you send messages. The parameter is the message object. The type of this object must agree with the type given as a template parameter to the advertise$<$$>$() call, as was done in the constructor above.\mbox{\Hypertarget{classExplorer_a99a6215e70f2449189b0a3cb7ec12994}\label{classExplorer_a99a6215e70f2449189b0a3cb7ec12994}} 
+\index{Explorer@{Explorer}!sensor\+Callback@{sensor\+Callback}}
+\index{sensor\+Callback@{sensor\+Callback}!Explorer@{Explorer}}
+\subsubsection{\texorpdfstring{sensor\+Callback()}{sensorCallback()}}
+{\footnotesize\ttfamily void Explorer\+::sensor\+Callback (\begin{DoxyParamCaption}\item[{const sensor\+\_\+msgs\+::\+Laser\+Scan\+::\+Const\+Ptr \&}]{msg }\end{DoxyParamCaption})}
+
+
+
+This is a callback function for laser data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Laser\+Scan} & message\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/ajetwankhede/catkin\+\_\+ws/src/the\+\_\+explorer\+\_\+robot/include/\mbox{\hyperlink{explorer_8hpp}{explorer.\+hpp}}\item 
+/home/ajetwankhede/catkin\+\_\+ws/src/the\+\_\+explorer\+\_\+robot/src/\mbox{\hyperlink{explorer_8cpp}{explorer.\+cpp}}\end{DoxyCompactItemize}

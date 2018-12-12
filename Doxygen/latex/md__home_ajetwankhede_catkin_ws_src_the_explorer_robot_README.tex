@@ -1,0 +1,203 @@
+\href{https://travis-ci.org/ajeetwankhede/The-Explorer-Robot}\texttt{ }
+
+\href{https://coveralls.io/github/ajeetwankhede/The-Explorer-Robot}\texttt{ }
+
+\href{https://opensource.org/licenses/MIT}\texttt{ }
+
+\subsection*{Team Members}
+
+
+\begin{DoxyEnumerate}
+\item Likhita Madiraju\+: I am an M.\+Eng. Robotics student at the University of Maryland.
+\item Ajeet Wankhede\+: I am a master\textquotesingle{}s student at the University of Maryland, studying Robotics.
+\end{DoxyEnumerate}
+
+\subsection*{Author Name for Sprint 1}
+
+Driver\+: Ajeet Wankhede
+
+Navigator\+: Likhita Madiraju
+
+\subsection*{Author Name for Sprint 2}
+
+Driver\+: Likhita Madiraju
+
+Navigator\+: Ajeet Wankhede
+
+\subsection*{Author Name for Sprint 3}
+
+Driver\+: Ajeet Wankhede
+
+Navigator\+: Likhita Madiraju
+
+\subsection*{Project Overview}
+
+This autonomous robotic system can be applied for Turtle\+Bot in any indoor facility for 2D mapping and path planning. Simultaneous Localization and Mapping (S\+L\+AM) is developed, for Acme Robotics, for the navigation of their Turtle\+Bot, in an unknown environment. Gazebo is used to create a model of a warehouse to be explored by the Turtle\+Bot. S\+L\+AM enables the location and building of a map while the robot is moving through the warehouse safely. Once the floorplan is created, a path planner is implemented for autonomous navigation, which can be used to locate and transport packages within the warehouse. The generated map and the optimal trajectory is visualized with the help of rviz visualization environment. A demo is provided, implementing the exploration of unknown environment and path planning, in a warehouse setting. ~\newline
+ \subsection*{Disclaimer}
+
+This project comes with M\+IT license. To view the entire license content please visit the following \href{https://opensource.org/licenses/MIT}\texttt{ link}
+
+\subsection*{Link for S\+IP document}
+
+\href{https://docs.google.com/spreadsheets/d/10SLYF6b-H8jBe_Sn3X3n9NG67jSoSL41Iv0T1WjI9ok/edit?usp=sharing}\texttt{ S\+IP document}
+
+\subsection*{Link for Sprint review document}
+
+\href{https://docs.google.com/document/d/1Z08-iwbV5uTY5A9PehAq-EnedAIHFBOwVHvecpv49y0/edit?usp=sharing}\texttt{ Sprint review document}
+
+\subsection*{Dependencies}
+
+
+\begin{DoxyEnumerate}
+\item R\+OS Kinetic -\/ to install R\+OS follow the \href{http://wiki.ros.org/kinetic/Installation}\texttt{ link}
+\item catkin -\/ to install catkin run the following command 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{sudo apt-get install ros-kinetic-catkin}
+\end{DoxyCode}
+
+\item Package Dependencies
+
+a. roscpp
+
+b. std\+\_\+msgs
+
+c. rostest
+
+d. turtlebot simulation stack -\/ to install turtlebot run the following command 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{sudo apt-get install ros-kinetic-turtlebot-gazebo ros-kinetic-turtlebot-apps ros-kinetic-turtlebot-rviz-launchers}
+\end{DoxyCode}
+
+\begin{DoxyEnumerate}
+\item Gazebo (v7.\+1) -\/ Select while installing R\+OS Kinetic
+\end{DoxyEnumerate}
+\end{DoxyEnumerate}
+
+\#\# Build 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{mkdir -p ~/catkin\_ws/src}
+\DoxyCodeLine{cd ~/catkin\_ws/}
+\DoxyCodeLine{catkin\_make}
+\DoxyCodeLine{source ./devel/setup.bash}
+\DoxyCodeLine{cd src/}
+\DoxyCodeLine{git clone --recursive https://github.com/ajeetwankhede/The-Explorer-Robot.git}
+\DoxyCodeLine{cd ../..}
+\DoxyCodeLine{catkin\_make}
+\end{DoxyCode}
+ \subsection*{Running a Gazebo demo}
+
+We have created a warehouse world in Gazebo with Turtle\+Bot. To view this world enter the following commands\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{roslaunch turtlebot\_gazebo turtlebot\_world.launch world\_file:=/home/<user name>/catkin\_ws/src/the\_explorer\_robot/world/warehouse.world }
+\end{DoxyCode}
+ The world should look as shown below\+: 
+
+ 
+
+This world is mapped using gmapping which uses S\+L\+AM. A explorer node is created for autonomous S\+L\+AM which subscribes to the laser data of turtle bot provided by topic /scan, and publishes the command velocities for turtle bot. The algorithm for explorer is explained in the activity daigram. It can also record the messages for approx 30 sec using rosbag. This process is visualized in Rviz. Enter following commands in terminal to launch the demo\+:
+
+a. Autonomous S\+L\+AM\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{cd ~/catkin\_ws/}
+\DoxyCodeLine{source ./devel/setup.bash}
+\DoxyCodeLine{roslaunch the\_explorer\_robot demo\_launch.launch}
+\end{DoxyCode}
+ The Turtle\+Bot can also be controlled by using teleop for generating the 2D map. If teleop is launched then it overrides the messages published by explorer node. To launch teleop enter the following command in new terminal 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{roslaunch turtlebot\_teleop keyboard\_teleop.launch --screen}
+\end{DoxyCode}
+
+
+\subsection*{Using the Service to change the speed}
+
+While using gmapping the linear speed and angular speed of the robot can be changed using the service change\+\_\+speed. First argument is the linear speed and second is the angular speed. It can be called by entering the following commands in a new terminal. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{rosservice call /change\_speed <linear\_speed> <angular\_speed>}
+\end{DoxyCode}
+
+
+Once the mapping generates a rough map, it can be saved by running the service provided by gmapping. Enter the following command in new terminal. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{rosrun map\_server map\_saver -f <file\_path>}
+\end{DoxyCode}
+ Output of the gmapping is as shown below\+: 
+
+ 
+
+This map can be made better either using teleop or editing the saved map. The map generated after moving the Turtle\+Bot to the parts where the area in the map was grey, we the the below map\+: 
+
+ 
+
+b. Path planning using R\+OS navigation stack The saved map is used for path planning using R\+OS navigation stack. Enter the following commands to launch the navigation stack demo\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{cd ~/catkin\_ws/}
+\DoxyCodeLine{source ./devel/setup.bash}
+\DoxyCodeLine{roslaunch the\_explorer\_robot path\_launch.launch}
+\end{DoxyCode}
+ In Rviz the Turtle\+Bot pose can be estimated using 2D pose estimate. Once the pose is approximately as in Gazebo, the path planner can be used by setting a goal with the help of 2D Nav goal button. The Tutle\+Bot navigates to the pose that has been set.
+
+\subsection*{Stop the nodes}
+
+To stop, press Ctrl+C and then enter the following command to clean up the nodes from the rosnode list 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{rosnode cleanup}
+\end{DoxyCode}
+
+
+\subsection*{Visualize in rqt}
+
+To visualize the publish-\/subscribe relationships between the nodes as a graph run the following command in a new terminal 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{rosrun rqt\_graph rqt\_graph}
+\end{DoxyCode}
+
+
+\subsection*{Using rosbag to record and replay the messages}
+
+To start recoding the messages expect /camera/$\ast$ topics, using rosbag run the following commands in a new terminal. It will record for approx 30 sec and dave a bag file in results folder. Make sure roscore is running. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{roslaunch the\_explorer\_robot demo\_launch\_file.launch record:=true}
+\end{DoxyCode}
+ The recording can be stopped by pressing Ctrl+C and the messages will be saved in results/recorded\+Data.\+bag file. To disable the recording option while launching the launch\+\_\+file run the following command. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{roslaunch the\_explorer\_robot demo\_launch\_file.launch record:=false}
+\end{DoxyCode}
+
+
+To play the recorded messages run the following command in a new terminal. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{cd ~/catkin\_ws/src/the\_explorer\_robot/results}
+\DoxyCodeLine{rosbag play recordedData.bag}
+\end{DoxyCode}
+
+
+\subsection*{Running the tests}
+
+To run the tests written for explorer node run the following commands in a new terminal. It will show the output after R\+OS runs the tests. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{cd ~/catkin\_ws}
+\DoxyCodeLine{source ./devel/setup.bash}
+\DoxyCodeLine{catkin\_make run\_tests\_the\_explorer\_robot}
+\end{DoxyCode}
+ The test ouput could also be seen by launching the test launch file by entering the following commands\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{rostest the\_explorer\_robot explorerTest.launch}
+\end{DoxyCode}
+
+
+\subsection*{How to generate Doxygen report}
+
+Run the following commands to generate a Doxygen report\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{sudo apt-get install doxygen}
+\DoxyCodeLine{cd <path to repository>}
+\DoxyCodeLine{mkdir Doxygen}
+\DoxyCodeLine{cd Doxygen}
+\DoxyCodeLine{doxygen -g <config\_file\_name>}
+\DoxyCodeLine{gedit <config\_file\_name>}
+\end{DoxyCode}
+ Update P\+R\+O\+J\+E\+C\+T\+\_\+\+N\+A\+ME and I\+N\+P\+UT fields in the configuration file. Then run the following command to generate the documentations. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{doxygen <config\_file\_name>}
+\end{DoxyCode}
+ In Doxygen folder, config file and genertaed reports are saved as html and latex format in Doxygen directory. 
