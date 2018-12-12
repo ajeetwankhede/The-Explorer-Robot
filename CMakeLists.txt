@@ -14,6 +14,12 @@ find_package(catkin REQUIRED COMPONENTS
   message_generation
 )
 
+## Generate services in the 'srv' folder
+add_service_files(FILES change_speed.srv)
+
+## Generate added messages and services with any dependencies listed here
+generate_messages(DEPENDENCIES std_msgs)
+
 catkin_package()
 
 ## Specify additional locations of header files
@@ -23,13 +29,9 @@ include_directories(
 )
 
 ## Declare a C++ executable
- add_executable(planner src/main.cpp src/map.cpp src/optimalPlanner.cpp src/output.cpp)
- add_executable(explorer src/explorer.cpp)
+ add_executable(explorer src/main.cpp src/explorer.cpp)
 
 ## Specify libraries to link a library or executable target against
- target_link_libraries(planner
-   ${catkin_LIBRARIES}
- )
   target_link_libraries(explorer
    ${catkin_LIBRARIES}
  )
@@ -40,25 +42,22 @@ if(CATKIN_ENABLE_TESTING)
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O0 --coverage")
 
   add_rostest_gtest(
-    plannerTest
-    test/plannerTest.launch
+    explorerTest
+    test/explorerTest.launch
     test/main.cpp
-    test/optimalPlannerTest.cpp
-    test/mapTest.cpp
-    test/outputTest.cpp
-    src/map.cpp
-    src/optimalPlanner.cpp
-    src/output.cpp
+    test/explorerTest.cpp
+    src/explorer.cpp
   )
 
   target_link_libraries(
-    plannerTest
+    explorerTest
     ${catkin_LIBRARIES}
   )
 
   add_dependencies(
-    plannerTest
-    planner
+    explorerTest
+    explorer
+    the_explorer_robot_generate_messages_cpp
     ${catkin_EXPORTED_TARGETS}
   )
 endif()
