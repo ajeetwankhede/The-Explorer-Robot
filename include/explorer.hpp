@@ -85,15 +85,25 @@ class Explorer {
    *   @return none
    */
   void explore();
+  /**
+   *   @brief Use this function to implement the planner
+   *
+   *   @param none
+   *
+   *   @return none
+   */
+  void planner();
   bool obstacle;
-
- private:
+  int count;
+  bool turn;
   geometry_msgs::Twist msg;
+  float speedX, rotateZ;
+ 
+ private:
   ros::NodeHandle n;
   ros::Publisher velocity_pub;
   ros::Subscriber sub;
   ros::ServiceServer server;
-  float speedX, rotateZ;
   float message;
 };
 
