@@ -58,17 +58,12 @@ Explorer::Explorer() {
   msg.angular.y = 0.0;
   msg.angular.z = 0.0;
   message = 0.0;
+  count = 0;
+  turn = true;
 }
 
 Explorer::~Explorer() {
   // Destructor stub
-  msg.linear.x = 0.0;
-  msg.linear.y = 0.0;
-  msg.linear.z = 0.0;
-  msg.angular.x = 0.0;
-  msg.angular.y = 0.0;
-  msg.angular.z = 0.0;
-  velocity_pub.publish(msg);
 }
 
 void Explorer::sensorCallback(const sensor_msgs::LaserScan::ConstPtr& msg) {
@@ -89,6 +84,34 @@ bool Explorer::changeSpeed(the_explorer_robot::change_speed::Request& req,
   res.respSpeedX = speedX;
   res.respRotateZ = rotateZ;
   return true;
+}
+
+void Explorer::planner() {
+  // Collision Detection check
+  if (obstacle == true) {
+    // Collision detected
+    msg.linear.x = 0.0;
+    msg.angular.z = rotateZ;
+    ROS_INFO("Collision detected: ");
+  } else {
+    // No collision
+    if (count < 300) {
+      msg.linear.x = 0.0;
+      if (turn) {
+        msg.angular.z = rotateZ * 4;
+      } else {
+        msg.angular.z = -rotateZ * 4;
+      }
+    } else if (count >= 300 && count < 700) {
+        turn = false;
+        msg.angular.z = 0.0;
+        msg.linear.x = speedX;
+    } else {
+      count = 0;
+    }
+    count++;
+    ROS_INFO("No collision: ");
+  }
 }
 
 void Explorer::explore() {
@@ -132,39 +155,8 @@ void Explorer::explore() {
        ("/scan", 300, &Explorer::sensorCallback, this);
 
   ros::Rate loop_rate(10);
-  int count = 0;
-  bool turn = true;
   while (ros::ok()) {
-    // Collision Detection check
-    if (obstacle == true) {
-      // Collision detected
-      msg.linear.x = 0.0;
-      msg.angular.z = rotateZ;
-      ROS_INFO("Collision detected: ");
-    } else {
-      // No collision
-      if (count < 300) {
-        msg.linear.x = 0.0;
-        if (turn) {
-          msg.angular.z = rotateZ * 4;
-        } else {
-          msg.angular.z = -rotateZ * 4;
-        }
-      } else if (count >= 300 && count < 700) {
-          turn = false;
-          msg.angular.z = 0.0;
-          msg.linear.x = speedX;
-      } else {
-        count = 0;
-      }
-      count++;
-      ROS_INFO("No collision: ");
-    }
-    /*std::stringstream ss;
-    ss << "Linear speed: " << speedX << ", Angular speed: " << rotateZ;
-    std_msgs::String msg;
-    msg.data = ss.str();
-    ROS_INFO_STREAM("" << msg.data.c_str());*/
+    planner();
     /**
      * The publish() function is how you send messages. The parameter
      * is the message object. The type of this object must agree with the type
