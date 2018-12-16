@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(the_explorer_robot)
 
-add_definitions(-std=c++11)
+#add_definitions(-std=c++11)
 
 ## Find catkin macros and libraries
 find_package(catkin REQUIRED COMPONENTS
