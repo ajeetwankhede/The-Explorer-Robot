@@ -98,7 +98,7 @@ class Explorer {
   bool turn;
   geometry_msgs::Twist msg;
   float speedX, rotateZ;
- 
+
  private:
   ros::NodeHandle n;
   ros::Publisher velocity_pub;

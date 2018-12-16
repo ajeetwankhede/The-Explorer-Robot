@@ -99,7 +99,7 @@ TEST(explorerTest, initTest) {
 /**
  * @brief This is a test to check if the sensorCallback works correctly
  */
-//TEST(testexplorerTest, sensorCallbackTest) {
+// TEST(testexplorerTest, sensorCallbackTest) {
   /**
    * NodeHandle is the main access point to communications with the ROS system.
    * The first NodeHandle constructed will fully initialize this node, and the last
@@ -145,5 +145,5 @@ TEST(testexplorerTest, plannerTest2) {
   EXPECT_EQ(testObject.count, 1);
   testObject.planner();
   EXPECT_EQ(testObject.msg.linear.x, 0.0);
-  EXPECT_EQ(testObject.msg.angular.z, -testObject.rotateZ * 4);  
+  EXPECT_EQ(testObject.msg.angular.z, -testObject.rotateZ * 4);
 }
