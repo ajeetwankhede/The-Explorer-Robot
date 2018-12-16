@@ -162,6 +162,18 @@ The test ouput could also be seen by launching the test launch file by entering 
 rostest the_explorer_robot explorerTest.launch
 ```
 
+## Code Coverage
+The code coverage of the code is found by entering the following commands in a terminal. This will show the coverage in the terminal. The current code coverage is 90%.
+```
+cd ~/catkin_ws/build
+lcov --directory . --capture --output-file coverage.info
+lcov --list coverage.info
+```
+To create a .html for the code coverage run the following command:
+```
+genhtml coverage.info --output-directory covout
+```
+
 ## How to generate Doxygen report
 Run the following commands to generate a Doxygen report:
 ```
