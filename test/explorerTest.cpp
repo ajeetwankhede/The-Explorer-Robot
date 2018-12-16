@@ -87,19 +87,63 @@ TEST(testexplorerTest, serviceTest) {
 }
 
 /**
+ * @brief This is a test to check if the obstacle is correctly initialized
+ */
+TEST(explorerTest, initTest) {
+  Explorer testObject;
+  EXPECT_FALSE(testObject.obstacle);
+  EXPECT_TRUE(testObject.turn);
+  EXPECT_EQ(0, testObject.count);
+}
+
+/**
  * @brief This is a test to check if the sensorCallback works correctly
  */
-// TEST(testexplorerTest, obstacleInitTest) {
+//TEST(testexplorerTest, sensorCallbackTest) {
   /**
    * NodeHandle is the main access point to communications with the ROS system.
    * The first NodeHandle constructed will fully initialize this node, and the last
    * NodeHandle destructed will close down the node.
    */
-// ros::NodeHandle n;
-// Explorer ex;
-// ros::Subscriber sub = n.subscribe <sensor_msgs::LaserScan>
-  //    ("/scan", 300, &Explorer::sensorCallback, &ex);
-// ros::WallDuration(1).sleep();
-// Check the obstacle status
-// EXPECT_EQ(ex.obstacle, false);
-// }
+  /* ros::NodeHandle n;
+   ros::Subscriber sub;
+   Explorer testObject;
+   testObject.sensorCallback(sensor_msgs::LaserScan::ConstPtr& msg);
+   // Check the obstacle status
+   EXPECT_TRUE(testObject.obstacle);
+}*/
+
+/**
+ * @brief This is a test to check if the planner works correctly
+ */
+TEST(testexplorerTest, plannerTest1) {
+  Explorer testObject;
+  testObject.obstacle = true;
+  testObject.planner();
+  // Check the msg
+  EXPECT_EQ(testObject.msg.linear.x, 0.0);
+  EXPECT_EQ(testObject.msg.angular.z, testObject.rotateZ);
+}
+
+/**
+ * @brief This is a test to check if the planner works correctly
+ */
+TEST(testexplorerTest, plannerTest2) {
+  Explorer testObject;
+  testObject.planner();
+  // Check the msg
+  EXPECT_EQ(testObject.msg.linear.x, 0.0);
+  EXPECT_EQ(testObject.msg.angular.z, testObject.rotateZ * 4);
+  EXPECT_EQ(testObject.count, 1);
+  testObject.count = 300;
+  testObject.planner();
+  EXPECT_EQ(testObject.msg.linear.x, testObject.speedX);
+  EXPECT_EQ(testObject.msg.angular.z, 0.0);
+  EXPECT_FALSE(testObject.turn);
+  testObject.count = 700;
+  testObject.planner();
+  EXPECT_EQ(testObject.count, 1);
+  testObject.planner();
+  EXPECT_EQ(testObject.msg.linear.x, 0.0);
+  EXPECT_EQ(testObject.msg.angular.z, -testObject.rotateZ * 4);  
+}
