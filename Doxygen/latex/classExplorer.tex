@@ -12,12 +12,29 @@ void \mbox{\hyperlink{classExplorer_a99a6215e70f2449189b0a3cb7ec12994}{sensor\+C
 bool \mbox{\hyperlink{classExplorer_aa860260292752413282de7f9d9ddfbc2}{change\+Speed}} (the\+\_\+explorer\+\_\+robot\+::change\+\_\+speed\+::\+Request \&req, the\+\_\+explorer\+\_\+robot\+::change\+\_\+speed\+::\+Response \&res)
 \begin{DoxyCompactList}\small\item\em Service for changing the speed. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classExplorer_a246ceb49142bbd15bdbdc3b900269294}{explore}} ()
-\begin{DoxyCompactList}\small\item\em Use this function to start the robot. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Use this function to start the robot. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classExplorer_a14789aaaa077a3b9463b1bc9ff4ca693}{planner}} ()
+\begin{DoxyCompactList}\small\item\em Use this function to implement the planner. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{classExplorer_aae77ad5be0e6da499ea662ca7bbd1d42}\label{classExplorer_aae77ad5be0e6da499ea662ca7bbd1d42}} 
 bool {\bfseries obstacle}
+\item 
+\mbox{\Hypertarget{classExplorer_a75d3cae2e1bb7b4c3eb53864c767f9f6}\label{classExplorer_a75d3cae2e1bb7b4c3eb53864c767f9f6}} 
+int {\bfseries count}
+\item 
+\mbox{\Hypertarget{classExplorer_a8b2d390a6cd5d0092e702ee0c4b2e641}\label{classExplorer_a8b2d390a6cd5d0092e702ee0c4b2e641}} 
+bool {\bfseries turn}
+\item 
+\mbox{\Hypertarget{classExplorer_a151ed0ca8767509781f213609bc98104}\label{classExplorer_a151ed0ca8767509781f213609bc98104}} 
+geometry\+\_\+msgs\+::\+Twist {\bfseries msg}
+\item 
+\mbox{\Hypertarget{classExplorer_a445354c7b8533f3f494fbcd68093827a}\label{classExplorer_a445354c7b8533f3f494fbcd68093827a}} 
+float {\bfseries speedX}
+\item 
+\mbox{\Hypertarget{classExplorer_a7aa684836abdd7d037a33fe67e7aa81c}\label{classExplorer_a7aa684836abdd7d037a33fe67e7aa81c}} 
+float {\bfseries rotateZ}
 \end{DoxyCompactItemize}
 
 
@@ -107,7 +124,25 @@ The subscribe() call is how you tell R\+OS that you want to receive messages on 
 
 The second parameter to the subscribe() function is the size of the message queue. If messages are arriving faster than they are being processed, this is the number of messages that will be buffered up before beginning to throw away the oldest ones.
 
-The publish() function is how you send messages. The parameter is the message object. The type of this object must agree with the type given as a template parameter to the advertise$<$$>$() call, as was done in the constructor above.\mbox{\Hypertarget{classExplorer_a99a6215e70f2449189b0a3cb7ec12994}\label{classExplorer_a99a6215e70f2449189b0a3cb7ec12994}} 
+The publish() function is how you send messages. The parameter is the message object. The type of this object must agree with the type given as a template parameter to the advertise$<$$>$() call, as was done in the constructor above.\mbox{\Hypertarget{classExplorer_a14789aaaa077a3b9463b1bc9ff4ca693}\label{classExplorer_a14789aaaa077a3b9463b1bc9ff4ca693}} 
+\index{Explorer@{Explorer}!planner@{planner}}
+\index{planner@{planner}!Explorer@{Explorer}}
+\subsubsection{\texorpdfstring{planner()}{planner()}}
+{\footnotesize\ttfamily void Explorer\+::planner (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Use this function to implement the planner. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classExplorer_a99a6215e70f2449189b0a3cb7ec12994}\label{classExplorer_a99a6215e70f2449189b0a3cb7ec12994}} 
 \index{Explorer@{Explorer}!sensor\+Callback@{sensor\+Callback}}
 \index{sensor\+Callback@{sensor\+Callback}!Explorer@{Explorer}}
 \subsubsection{\texorpdfstring{sensor\+Callback()}{sensorCallback()}}

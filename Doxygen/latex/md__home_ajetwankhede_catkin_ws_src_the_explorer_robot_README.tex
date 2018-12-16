@@ -185,6 +185,20 @@ To run the tests written for explorer node run the following commands in a new t
 \end{DoxyCode}
 
 
+\subsection*{Code Coverage}
+
+The code coverage of the code is found by entering the following commands in a terminal. This will show the coverage in the terminal. The current code coverage is 90\%. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{cd ~/catkin\_ws/build}
+\DoxyCodeLine{lcov --directory . --capture --output-file coverage.info}
+\DoxyCodeLine{lcov --list coverage.info}
+\end{DoxyCode}
+ To create a .html for the code coverage run the following command\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{genhtml coverage.info --output-directory covout}
+\end{DoxyCode}
+
+
 \subsection*{How to generate Doxygen report}
 
 Run the following commands to generate a Doxygen report\+: 

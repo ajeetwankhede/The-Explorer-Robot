@@ -87,12 +87,30 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a246ceb49142bbd15bdbdc3b900269294"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classExplorer.html#a246ceb49142bbd15bdbdc3b900269294">explore</a> ()</td></tr>
 <tr class="memdesc:a246ceb49142bbd15bdbdc3b900269294"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this function to start the robot.  <a href="#a246ceb49142bbd15bdbdc3b900269294">More...</a><br /></td></tr>
 <tr class="separator:a246ceb49142bbd15bdbdc3b900269294"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a14789aaaa077a3b9463b1bc9ff4ca693"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classExplorer.html#a14789aaaa077a3b9463b1bc9ff4ca693">planner</a> ()</td></tr>
+<tr class="memdesc:a14789aaaa077a3b9463b1bc9ff4ca693"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this function to implement the planner.  <a href="#a14789aaaa077a3b9463b1bc9ff4ca693">More...</a><br /></td></tr>
+<tr class="separator:a14789aaaa077a3b9463b1bc9ff4ca693"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:aae77ad5be0e6da499ea662ca7bbd1d42"><td class="memItemLeft" align="right" valign="top"><a id="aae77ad5be0e6da499ea662ca7bbd1d42"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>obstacle</b></td></tr>
 <tr class="separator:aae77ad5be0e6da499ea662ca7bbd1d42"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75d3cae2e1bb7b4c3eb53864c767f9f6"><td class="memItemLeft" align="right" valign="top"><a id="a75d3cae2e1bb7b4c3eb53864c767f9f6"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>count</b></td></tr>
+<tr class="separator:a75d3cae2e1bb7b4c3eb53864c767f9f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b2d390a6cd5d0092e702ee0c4b2e641"><td class="memItemLeft" align="right" valign="top"><a id="a8b2d390a6cd5d0092e702ee0c4b2e641"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>turn</b></td></tr>
+<tr class="separator:a8b2d390a6cd5d0092e702ee0c4b2e641"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a151ed0ca8767509781f213609bc98104"><td class="memItemLeft" align="right" valign="top"><a id="a151ed0ca8767509781f213609bc98104"></a>
+geometry_msgs::Twist&#160;</td><td class="memItemRight" valign="bottom"><b>msg</b></td></tr>
+<tr class="separator:a151ed0ca8767509781f213609bc98104"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a445354c7b8533f3f494fbcd68093827a"><td class="memItemLeft" align="right" valign="top"><a id="a445354c7b8533f3f494fbcd68093827a"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>speedX</b></td></tr>
+<tr class="separator:a445354c7b8533f3f494fbcd68093827a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7aa684836abdd7d037a33fe67e7aa81c"><td class="memItemLeft" align="right" valign="top"><a id="a7aa684836abdd7d037a33fe67e7aa81c"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>rotateZ</b></td></tr>
+<tr class="separator:a7aa684836abdd7d037a33fe67e7aa81c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="acbedef0262785b6983d1fe9b4f2c6242"></a>
@@ -214,6 +232,32 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>obstacle</b></td></tr
 <p class="">The subscribe() call is how you tell ROS that you want to receive messages on a given topic. This invokes a call to the ROS master node, which keeps a registry of who is publishing and who is subscribing. Messages are passed to a callback function, here called chatterCallback. subscribe() returns a Subscriber object that you must hold on to until you want to unsubscribe. When all copies of the Subscriber object go out of scope, this callback will automatically be unsubscribed from this topic.</p>
 <p class="">The second parameter to the subscribe() function is the size of the message queue. If messages are arriving faster than they are being processed, this is the number of messages that will be buffered up before beginning to throw away the oldest ones.</p>
 <p class="">The publish() function is how you send messages. The parameter is the message object. The type of this object must agree with the type given as a template parameter to the advertise&lt;&gt;() call, as was done in the constructor above.</p>
+
+</div>
+</div>
+<a id="a14789aaaa077a3b9463b1bc9ff4ca693"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a14789aaaa077a3b9463b1bc9ff4ca693">&#9670;&nbsp;</a></span>planner()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Explorer::planner </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Use this function to implement the planner. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">none</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>none </dd></dl>
 
 </div>
 </div>
