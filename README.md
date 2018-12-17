@@ -39,6 +39,8 @@ This project comes with MIT license. To view the entire license content please v
 ## Link for Presentation
 [Presentation](https://docs.google.com/presentation/d/1NNtCFVRW0xJ9yhzx8ItfECvCWdzQc9lSniMQvsFLDLQ/edit?usp=sharing)
 
+## Link for Video
+[Youtube Video](https://youtu.be/mVr7bUdZiT0)
 
 ## Dependencies
 1. ROS Kinetic - to install ROS follow the [link](http://wiki.ros.org/kinetic/Installation)
@@ -117,7 +119,8 @@ This map can be made better either using teleop or editing the saved map. The ma
 <img src="/output/slam_final.png">
 </p>
 
-b. Path planning using ROS navigation stack
+b. Path planning using ROS navigation stack:
+
 The saved map is used for path planning using ROS navigation stack. Enter the following commands to launch the navigation stack demo:
 ```
 cd ~/catkin_ws/
