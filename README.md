@@ -73,7 +73,7 @@ catkin_make
 source ./devel/setup.bash
 cd src/
 git clone --recursive https://github.com/ajeetwankhede/The-Explorer-Robot.git
-cd ../..
+cd ../
 catkin_make
 ```
 ## Running a Gazebo demo
