@@ -79,7 +79,7 @@ catkin_make
 ## Running a Gazebo demo
 We have created a warehouse world in Gazebo with TurtleBot. To view this world enter the following commands:
 ```
-roslaunch turtlebot_gazebo turtlebot_world.launch world_file:=/home/<user name>/catkin_ws/src/the_explorer_robot/world/warehouse.world 
+roslaunch turtlebot_gazebo turtlebot_world.launch world_file:=/home/<user name>/catkin_ws/src/The-Explorer-Robot/world/warehouse.world 
 ```
 The world should look as shown below:
 <p align="center">
