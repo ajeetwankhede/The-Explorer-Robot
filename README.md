@@ -77,6 +77,16 @@ cd ../
 catkin_make
 ```
 ## Running a Gazebo demo
+This world is mapped using gmapping which uses SLAM. A explorer node is created for autonomous SLAM which subscribes to the laser data of turtle bot provided by topic /scan, and publishes the command velocities for turtle bot. The algorithm for explorer is explained in the activity daigram. It can also record the messages for approx 30 sec using rosbag. This process is visualized in Rviz. Enter following commands in terminal to launch the demo:
+
+a. Autonomous SLAM:
+```
+cd ~/catkin_ws/
+source ./devel/setup.bash
+roslaunch the_explorer_robot demo_launch.launch
+```
+## To run SLAM with teleop 
+
 We have created a warehouse world in Gazebo with TurtleBot. To view this world enter the following commands:
 ```
 roslaunch turtlebot_gazebo turtlebot_world.launch world_file:=/home/<user name>/catkin_ws/src/The-Explorer-Robot/world/warehouse.world 
@@ -86,19 +96,18 @@ The world should look as shown below:
 <img src="/output/warehouse.png">
 </p>
 
-This world is mapped using gmapping which uses SLAM. A explorer node is created for autonomous SLAM which subscribes to the laser data of turtle bot provided by topic /scan, and publishes the command velocities for turtle bot. The algorithm for explorer is explained in the activity daigram. It can also record the messages for approx 30 sec using rosbag. This process is visualized in Rviz. Enter following commands in terminal to launch the demo:
-
-a. Autonomous SLAM:
-```
-cd ~/catkin_ws/
-source ./devel/setup.bash
-roslaunch the_explorer_robot demo_launch.launch
-```
 The TurtleBot can also be controlled by using teleop for generating the 2D map. If teleop is launched then it overrides the messages published by explorer node. To launch teleop enter the following command in new terminal
 ```
 roslaunch turtlebot_teleop keyboard_teleop.launch --screen
 ```
-
+To launch rviz: 
+```
+roslaunch turtlebot_rviz_launchers view_navigation.launch
+```
+To launch gmapping:
+```
+roslaunch turtlebot_gazebo gmapping_demo.launch
+```
 ## Using the Service to change the speed
 While using gmapping the linear speed and angular speed of the robot can be changed using the service change_speed. First argument is the linear speed and second is the angular speed. It can be called by entering the following commands in a new terminal.
 ```
